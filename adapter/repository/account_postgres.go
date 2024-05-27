@@ -22,7 +22,7 @@ func NewAccountSQL(db SQL) AccountSQL {
 func (a AccountSQL) Create(ctx context.Context, account domain.Account) (domain.Account, error) {
 	var query = `
 		INSERT INTO 
-			accounts (id, name, cpf, balance, created_at)
+			accounts (id, name, document, balance, created_at)
 		VALUES 
 			($1, $2, $3, $4, $5)
 	`
@@ -32,7 +32,7 @@ func (a AccountSQL) Create(ctx context.Context, account domain.Account) (domain.
 		query,
 		account.ID(),
 		account.Name(),
-		account.CPF(),
+		account.Document(),
 		account.Balance(),
 		account.CreatedAt(),
 	); err != nil {
@@ -74,19 +74,19 @@ func (a AccountSQL) FindAll(ctx context.Context) ([]domain.Account, error) {
 		var (
 			ID        string
 			name      string
-			CPF       string
+			Document  string
 			balance   int64
 			createdAt time.Time
 		)
 
-		if err = rows.Scan(&ID, &name, &CPF, &balance, &createdAt); err != nil {
+		if err = rows.Scan(&ID, &name, &Document, &balance, &createdAt); err != nil {
 			return []domain.Account{}, errors.Wrap(err, "error listing accounts")
 		}
 
 		accounts = append(accounts, domain.NewAccount(
 			domain.AccountID(ID),
 			name,
-			CPF,
+			Document,
 			domain.Money(balance),
 			createdAt,
 		))
@@ -114,12 +114,12 @@ func (a AccountSQL) FindByID(ctx context.Context, ID domain.AccountID) (domain.A
 		query     = "SELECT * FROM accounts WHERE id = $1 LIMIT 1 FOR NO KEY UPDATE"
 		id        string
 		name      string
-		CPF       string
+		Document  string
 		balance   int64
 		createdAt time.Time
 	)
 
-	err := tx.QueryRowContext(ctx, query, ID).Scan(&id, &name, &CPF, &balance, &createdAt)
+	err := tx.QueryRowContext(ctx, query, ID).Scan(&id, &name, &Document, &balance, &createdAt)
 	switch {
 	case err == sql.ErrNoRows:
 		return domain.Account{}, domain.ErrAccountNotFound
@@ -127,7 +127,7 @@ func (a AccountSQL) FindByID(ctx context.Context, ID domain.AccountID) (domain.A
 		return domain.NewAccount(
 			domain.AccountID(id),
 			name,
-			CPF,
+			Document,
 			domain.Money(balance),
 			createdAt,
 		), err

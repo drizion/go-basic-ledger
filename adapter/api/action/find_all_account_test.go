@@ -38,14 +38,14 @@ func TestFindAllAccountAction_Execute(t *testing.T) {
 					{
 						ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 						Name:      "Test",
-						CPF:       "07094564964",
+						Document:  "07094564964",
 						Balance:   10,
 						CreatedAt: time.Time{}.String(),
 					},
 				},
 				err: nil,
 			},
-			expectedBody:       `[{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","cpf":"07094564964","balance":10,"created_at":"0001-01-01 00:00:00 +0000 UTC"}]`,
+			expectedBody:       `[{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","document":"07094564964","balance":10,"created_at":"0001-01-01 00:00:00 +0000 UTC"}]`,
 			expectedStatusCode: http.StatusOK,
 		},
 		{

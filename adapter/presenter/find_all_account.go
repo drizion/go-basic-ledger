@@ -20,7 +20,7 @@ func (a findAllAccountPresenter) Output(accounts []domain.Account) []usecase.Fin
 		o = append(o, usecase.FindAllAccountOutput{
 			ID:        account.ID().String(),
 			Name:      account.Name(),
-			CPF:       account.CPF(),
+			Document:  account.Document(),
 			Balance:   account.Balance().Float64(),
 			CreatedAt: account.CreatedAt().Format(time.RFC3339),
 		})

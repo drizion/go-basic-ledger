@@ -23,6 +23,7 @@ type (
 		ID                   string  `json:"id"`
 		AccountOriginID      string  `json:"account_origin_id"`
 		AccountDestinationID string  `json:"account_destination_id"`
+		IdempotencyKey       string  `json:"idempotency_key"`
 		Amount               float64 `json:"amount"`
 		CreatedAt            string  `json:"created_at"`
 	}

@@ -48,9 +48,9 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 			name: "Create account successful",
 			args: args{
 				input: CreateAccountInput{
-					Name:    "Test",
-					CPF:     "02815517078",
-					Balance: 19944,
+					Name:     "Test",
+					Document: "02815517078",
+					Balance:  19944,
 				},
 			},
 			repository: mockAccountRepoStore{
@@ -67,7 +67,7 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 				result: CreateAccountOutput{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Test",
-					CPF:       "02815517078",
+					Document:  "02815517078",
 					Balance:   199.44,
 					CreatedAt: time.Time{}.String(),
 				},
@@ -75,7 +75,7 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 			expected: CreateAccountOutput{
 				ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 				Name:      "Test",
-				CPF:       "02815517078",
+				Document:  "02815517078",
 				Balance:   199.44,
 				CreatedAt: time.Time{}.String(),
 			},
@@ -84,9 +84,9 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 			name: "Create account successful",
 			args: args{
 				input: CreateAccountInput{
-					Name:    "Test",
-					CPF:     "02815517078",
-					Balance: 2350,
+					Name:     "Test",
+					Document: "02815517078",
+					Balance:  2350,
 				},
 			},
 			repository: mockAccountRepoStore{
@@ -103,7 +103,7 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 				result: CreateAccountOutput{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Test",
-					CPF:       "02815517078",
+					Document:  "02815517078",
 					Balance:   23.5,
 					CreatedAt: time.Time{}.String(),
 				},
@@ -111,7 +111,7 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 			expected: CreateAccountOutput{
 				ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 				Name:      "Test",
-				CPF:       "02815517078",
+				Document:  "02815517078",
 				Balance:   23.5,
 				CreatedAt: time.Time{}.String(),
 			},
@@ -120,9 +120,9 @@ func TestCreateAccountInteractor_Execute(t *testing.T) {
 			name: "Create account generic error",
 			args: args{
 				input: CreateAccountInput{
-					Name:    "",
-					CPF:     "",
-					Balance: 0,
+					Name:     "",
+					Document: "",
+					Balance:  0,
 				},
 			},
 			repository: mockAccountRepoStore{

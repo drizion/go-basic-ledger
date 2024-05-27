@@ -55,7 +55,7 @@ func (a CreateAccountAction) Execute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	a.cleanCPF(input.CPF)
+	a.cleanDocument(input.Document)
 
 	output, err := a.uc.Execute(r.Context(), input)
 	if err != nil {
@@ -87,6 +87,6 @@ func (a CreateAccountAction) validateInput(input usecase.CreateAccountInput) []s
 	return msgs
 }
 
-func (a CreateAccountAction) cleanCPF(cpf string) string {
-	return strings.Replace(strings.Replace(cpf, ".", "", -1), "-", "", -1)
+func (a CreateAccountAction) cleanDocument(document string) string {
+	return strings.Replace(strings.Replace(document, ".", "", -1), "-", "", -1)
 }

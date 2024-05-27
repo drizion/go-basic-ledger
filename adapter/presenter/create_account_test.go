@@ -1,11 +1,12 @@
 package presenter
 
 import (
-	"github.com/gsabadini/go-clean-architecture/domain"
-	"github.com/gsabadini/go-clean-architecture/usecase"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/gsabadini/go-clean-architecture/domain"
+	"github.com/gsabadini/go-clean-architecture/usecase"
 )
 
 func Test_createAccountPresenter_Output(t *testing.T) {
@@ -31,7 +32,7 @@ func Test_createAccountPresenter_Output(t *testing.T) {
 			want: usecase.CreateAccountOutput{
 				ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 				Name:      "Testing",
-				CPF:       "07091054965",
+				Document:  "07091054965",
 				Balance:   10,
 				CreatedAt: "0001-01-01T00:00:00Z",
 			},

@@ -17,6 +17,7 @@ type (
 	CreateTransferInput struct {
 		AccountOriginID      string `json:"account_origin_id" validate:"required,uuid4"`
 		AccountDestinationID string `json:"account_destination_id" validate:"required,uuid4"`
+		IdempotencyKey       string `json:"idempotency_key" validate:"required"`
 		Amount               int64  `json:"amount" validate:"gt=0,required"`
 	}
 
@@ -30,6 +31,7 @@ type (
 		ID                   string  `json:"id"`
 		AccountOriginID      string  `json:"account_origin_id"`
 		AccountDestinationID string  `json:"account_destination_id"`
+		IdempotencyKey       string  `json:"idempotency_key"`
 		Amount               float64 `json:"amount"`
 		CreatedAt            string  `json:"created_at"`
 	}
@@ -76,6 +78,7 @@ func (t createTransferInteractor) Execute(ctx context.Context, input CreateTrans
 			domain.TransferID(domain.NewUUID()),
 			domain.AccountID(input.AccountOriginID),
 			domain.AccountID(input.AccountDestinationID),
+			domain.IdempotencyKeyId(input.IdempotencyKey),
 			domain.Money(input.Amount),
 			time.Now(),
 		)

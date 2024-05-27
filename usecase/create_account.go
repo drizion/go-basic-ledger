@@ -15,9 +15,9 @@ type (
 
 	// CreateAccountInput input data
 	CreateAccountInput struct {
-		Name    string `json:"name" validate:"required"`
-		CPF     string `json:"cpf" validate:"required"`
-		Balance int64  `json:"balance" validate:"gt=0,required"`
+		Name     string `json:"name" validate:"required"`
+		Document string `json:"document" validate:"required"`
+		Balance  int64  `json:"balance" validate:"gt=0,required"`
 	}
 
 	// CreateAccountPresenter output port
@@ -29,7 +29,7 @@ type (
 	CreateAccountOutput struct {
 		ID        string  `json:"id"`
 		Name      string  `json:"name"`
-		CPF       string  `json:"cpf"`
+		Document  string  `json:"document"`
 		Balance   float64 `json:"balance"`
 		CreatedAt string  `json:"created_at"`
 	}
@@ -62,7 +62,7 @@ func (a createAccountInteractor) Execute(ctx context.Context, input CreateAccoun
 	var account = domain.NewAccount(
 		domain.AccountID(domain.NewUUID()),
 		input.Name,
-		input.CPF,
+		input.Document,
 		domain.Money(input.Balance),
 		time.Now(),
 	)

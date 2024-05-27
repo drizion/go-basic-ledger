@@ -46,7 +46,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				rawPayload: []byte(
 					`{
 						"name": "test",
-						"cpf": "44451598087", 
+						"document": "44451598087", 
 						"balance": 10050
 					}`,
 				),
@@ -55,13 +55,13 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				result: usecase.CreateAccountOutput{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Test",
-					CPF:       "07094564964",
+					Document:  "07094564964",
 					Balance:   10.5,
 					CreatedAt: time.Time{}.String(),
 				},
 				err: nil,
 			},
-			expectedBody:       `{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","cpf":"07094564964","balance":10.5,"created_at":"0001-01-01 00:00:00 +0000 UTC"}`,
+			expectedBody:       `{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","document":"07094564964","balance":10.5,"created_at":"0001-01-01 00:00:00 +0000 UTC"}`,
 			expectedStatusCode: http.StatusCreated,
 		},
 		{
@@ -70,7 +70,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				rawPayload: []byte(
 					`{
 						"name": "test",
-						"cpf": "44451598087", 
+						"document": "44451598087", 
 						"balance": 100000
 					}`,
 				),
@@ -79,13 +79,13 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				result: usecase.CreateAccountOutput{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Test",
-					CPF:       "07094564964",
+					Document:  "07094564964",
 					Balance:   10000,
 					CreatedAt: time.Time{}.String(),
 				},
 				err: nil,
 			},
-			expectedBody:       `{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","cpf":"07094564964","balance":10000,"created_at":"0001-01-01 00:00:00 +0000 UTC"}`,
+			expectedBody:       `{"id":"3c096a40-ccba-4b58-93ed-57379ab04680","name":"Test","document":"07094564964","balance":10000,"created_at":"0001-01-01 00:00:00 +0000 UTC"}`,
 			expectedStatusCode: http.StatusCreated,
 		},
 		{
@@ -94,7 +94,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				rawPayload: []byte(
 					`{
 						"name": "test",
-						"cpf": "44451598087",
+						"document": "44451598087",
 						"balance": 10
 					}`,
 				),
@@ -112,7 +112,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				rawPayload: []byte(
 					`{
 						"name": "test",
-						"cpf": "44451598087",
+						"document": "44451598087",
 						"balance": -1
 					}`,
 				),
@@ -130,7 +130,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				rawPayload: []byte(
 					`{
 						"name123": "test",
-						"cpf1231": "44451598087",
+						"document1231": "44451598087",
 						"balance12312": 1
 					}`,
 				),
@@ -139,7 +139,7 @@ func TestCreateAccountAction_Execute(t *testing.T) {
 				result: usecase.CreateAccountOutput{},
 				err:    nil,
 			},
-			expectedBody:       `{"errors":["Name is a required field","CPF is a required field","Balance must be greater than 0"]}`,
+			expectedBody:       `{"errors":["Name is a required field","Document is a required field","Balance must be greater than 0"]}`,
 			expectedStatusCode: http.StatusBadRequest,
 		},
 		{

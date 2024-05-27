@@ -3,6 +3,7 @@ package action
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/gsabadini/go-clean-architecture/adapter/api/logging"
@@ -70,6 +71,9 @@ func (t CreateTransferAction) Execute(w http.ResponseWriter, r *http.Request) {
 }
 
 func (t CreateTransferAction) handleErr(w http.ResponseWriter, err error) {
+
+	fmt.Println("ERROR", err, domain.ErrDuplicateIdempotencyKey, err == domain.ErrDuplicateIdempotencyKey)
+
 	switch err {
 	case domain.ErrInsufficientBalance:
 		logging.NewError(
@@ -101,7 +105,30 @@ func (t CreateTransferAction) handleErr(w http.ResponseWriter, err error) {
 
 		response.NewError(err, http.StatusUnprocessableEntity).Send(w)
 		return
+	case domain.ErrDuplicateIdempotencyKey:
+		logging.NewError(
+			t.log,
+			err,
+			t.logKey,
+			http.StatusConflict,
+		).Log(t.logMsg)
+
+		response.NewError(err, http.StatusConflict).Send(w)
+		return
 	default:
+		// TODO: use switch case
+		if errors.Is(err, domain.ErrDuplicateIdempotencyKey) {
+			logging.NewError(
+				t.log,
+				err,
+				t.logKey,
+				http.StatusConflict,
+			).Log(t.logMsg)
+
+			response.NewError(err, http.StatusConflict).Send(w)
+			return
+		}
+
 		logging.NewError(
 			t.log,
 			err,

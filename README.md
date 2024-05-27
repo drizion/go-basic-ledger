@@ -91,11 +91,11 @@ make logs
 
 `Request`
 ```bash
-curl -i --request POST 'http://localhost:3001/v1/accounts' \
+curl -i --request POST 'http://localhost:8000/v1/accounts' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Test",
-    "cpf": "070.910.584-24",
+    "document": "070.910.584-24",
     "balance": 100
 }'
 ```
@@ -105,7 +105,7 @@ curl -i --request POST 'http://localhost:3001/v1/accounts' \
 {
     "id":"5cf59c6c-0047-4b13-a118-65878313e329",
     "name":"Test",
-    "cpf":"070.910.584-24",
+    "document":"070.910.584-24",
     "balance":1,
     "created_at":"2020-11-02T14:50:46Z"
 }
@@ -114,7 +114,7 @@ curl -i --request POST 'http://localhost:3001/v1/accounts' \
 
 `Request`
 ```bash
-curl -i --request GET 'http://localhost:3001/v1/accounts'
+curl -i --request GET 'http://localhost:8000/v1/accounts'
 ```
 
 `Response`
@@ -123,7 +123,7 @@ curl -i --request GET 'http://localhost:3001/v1/accounts'
     {
         "id": "5cf59c6c-0047-4b13-a118-65878313e329",
         "name": "Test",
-        "cpf": "070.910.584-24",
+        "document": "070.910.584-24",
         "balance": 1,
         "created_at": "2020-11-02T14:50:46Z"
     }
@@ -134,7 +134,7 @@ curl -i --request GET 'http://localhost:3001/v1/accounts'
 
 `Request`
 ```bash
-curl -i --request GET 'http://localhost:3001/v1/accounts/{{account_id}}/balance'
+curl -i --request GET 'http://localhost:8000/v1/accounts/{{account_id}}/balance'
 ```
 
 `Response`
@@ -148,7 +148,7 @@ curl -i --request GET 'http://localhost:3001/v1/accounts/{{account_id}}/balance'
 
 `Request`
 ```bash
-curl -i --request POST 'http://localhost:3001/v1/transfers' \
+curl -i --request POST 'http://localhost:8000/v1/transfers' \
 --header 'Content-Type: application/json' \
 --data-raw '{
 	"account_origin_id": "{{account_id}}",
@@ -172,7 +172,7 @@ curl -i --request POST 'http://localhost:3001/v1/transfers' \
 
 `Request`
 ```bash
-curl -i --request GET 'http://localhost:3001/v1/transfers'
+curl -i --request GET 'http://localhost:8000/v1/transfers'
 ```
 
 `Response`

@@ -16,16 +16,6 @@ type config struct {
 	ctxTimeout time.Duration
 }
 
-func newConfigMongoDB() *config {
-	return &config{
-		host:       os.Getenv("MONGODB_HOST"),
-		database:   os.Getenv("MONGODB_HOST"),
-		password:   os.Getenv("MONGODB_ROOT_PASSWORD"),
-		user:       os.Getenv("MONGODB_ROOT_USER"),
-		ctxTimeout: 60 * time.Second,
-	}
-}
-
 func newConfigPostgres() *config {
 	return &config{
 		host:     os.Getenv("POSTGRES_HOST"),

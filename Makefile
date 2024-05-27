@@ -99,11 +99,11 @@ docker-run: docker-deps ## Run docker container for image project
 	-e ENVIRONMENT=$(ENVIRONMENT) \
 	-e SYSTEM=$(SYSTEM) \
 	-e SYSTEM_VERSION=$(SYSTEM_VERSION) \
-	-p 3001:3001 \
+	-p 8000:8000 \
 	--env-file .env \
 	--network go-clean-architecture_main  \
 	--name $(SYSTEM)-$(SYSTEM_VERSION) gsabadini/$(SYSTEM):$(SYSTEM_VERSION)
 
 docker-deps:
-	docker-compose up -d postgres mongodb-primary mongodb-secondary mongodb-arbiter
+	docker-compose up -d postgres
 	sleep 3

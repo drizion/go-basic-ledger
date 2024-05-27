@@ -30,9 +30,9 @@ func (t TransferSQL) Create(ctx context.Context, transfer domain.Transfer) (doma
 
 	var query = `
 		INSERT INTO 
-			transfers (id, account_origin_id, account_destination_id, amount, created_at)
+			transfers (id, account_origin_id, account_destination_id, idempotency_key, amount, created_at)
 		VALUES 
-			($1, $2, $3, $4, $5)
+			($1, $2, $3, $4, $5, $6)
 	`
 
 	if err := tx.ExecuteContext(
@@ -41,6 +41,7 @@ func (t TransferSQL) Create(ctx context.Context, transfer domain.Transfer) (doma
 		transfer.ID(),
 		transfer.AccountOriginID(),
 		transfer.AccountDestinationID(),
+		transfer.IdempotencyKey(),
 		transfer.Amount(),
 		transfer.CreatedAt(),
 	); err != nil {
@@ -64,11 +65,12 @@ func (t TransferSQL) FindAll(ctx context.Context) ([]domain.Transfer, error) {
 			ID                   string
 			accountOriginID      string
 			accountDestinationID string
+			idempotencyKey       string
 			amount               int64
 			createdAt            time.Time
 		)
 
-		if err = rows.Scan(&ID, &accountOriginID, &accountDestinationID, &amount, &createdAt); err != nil {
+		if err = rows.Scan(&ID, &accountOriginID, &accountDestinationID, &idempotencyKey, &amount, &createdAt); err != nil {
 			return []domain.Transfer{}, errors.Wrap(err, "error listing transfers")
 		}
 
@@ -76,6 +78,7 @@ func (t TransferSQL) FindAll(ctx context.Context) ([]domain.Transfer, error) {
 			domain.TransferID(ID),
 			domain.AccountID(accountOriginID),
 			domain.AccountID(accountDestinationID),
+			domain.IdempotencyKeyId(idempotencyKey),
 			domain.Money(amount),
 			createdAt,
 		))

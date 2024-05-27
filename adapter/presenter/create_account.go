@@ -17,7 +17,7 @@ func (a createAccountPresenter) Output(account domain.Account) usecase.CreateAcc
 	return usecase.CreateAccountOutput{
 		ID:        account.ID().String(),
 		Name:      account.Name(),
-		CPF:       account.CPF(),
+		Document:  account.Document(),
 		Balance:   account.Balance().Float64(),
 		CreatedAt: account.CreatedAt().Format(time.RFC3339),
 	}

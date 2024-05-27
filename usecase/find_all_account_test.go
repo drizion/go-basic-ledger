@@ -65,14 +65,14 @@ func TestFindAllAccountInteractor_Execute(t *testing.T) {
 					{
 						ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 						Name:      "Test",
-						CPF:       "02815517078",
+						Document:  "02815517078",
 						Balance:   1.25,
 						CreatedAt: time.Time{}.String(),
 					},
 					{
 						ID:        "3c096a40-ccba-4b58-93ed-57379ab04681",
 						Name:      "Test",
-						CPF:       "02815517071",
+						Document:  "02815517071",
 						Balance:   999.99,
 						CreatedAt: time.Time{}.String(),
 					},
@@ -82,14 +82,14 @@ func TestFindAllAccountInteractor_Execute(t *testing.T) {
 				{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Test",
-					CPF:       "02815517078",
+					Document:  "02815517078",
 					Balance:   1.25,
 					CreatedAt: time.Time{}.String(),
 				},
 				{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04681",
 					Name:      "Test",
-					CPF:       "02815517071",
+					Document:  "02815517071",
 					Balance:   999.99,
 					CreatedAt: time.Time{}.String(),
 				},

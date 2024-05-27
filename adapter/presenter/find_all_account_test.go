@@ -42,14 +42,14 @@ func Test_findAllAccountPresenter_Output(t *testing.T) {
 				{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04680",
 					Name:      "Testing",
-					CPF:       "07091054965",
+					Document:  "07091054965",
 					Balance:   10,
 					CreatedAt: "0001-01-01T00:00:00Z",
 				},
 				{
 					ID:        "3c096a40-ccba-4b58-93ed-57379ab04682",
 					Name:      "Testing",
-					CPF:       "07091054965",
+					Document:  "07091054965",
 					Balance:   0.99,
 					CreatedAt: "0001-01-01T00:00:00Z",
 				},

@@ -1,11 +1,12 @@
 package presenter
 
 import (
-	"github.com/gsabadini/go-clean-architecture/domain"
-	"github.com/gsabadini/go-clean-architecture/usecase"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/gsabadini/go-clean-architecture/domain"
+	"github.com/gsabadini/go-clean-architecture/usecase"
 )
 
 func Test_findAllTransferPresenter_Output(t *testing.T) {
@@ -25,6 +26,7 @@ func Test_findAllTransferPresenter_Output(t *testing.T) {
 						"3c096a40-ccba-4b58-93ed-57379ab04680",
 						"3c096a40-ccba-4b58-93ed-57379ab04681",
 						"3c096a40-ccba-4b58-93ed-57379ab04682",
+						"3c096a40-ccba-4b58-93ed-57379ab04683",
 						1000,
 						time.Time{},
 					),
@@ -32,6 +34,7 @@ func Test_findAllTransferPresenter_Output(t *testing.T) {
 						"3c096a40-ccba-4b58-93ed-57379ab04680",
 						"3c096a40-ccba-4b58-93ed-57379ab04681",
 						"3c096a40-ccba-4b58-93ed-57379ab04682",
+						"3c096a40-ccba-4b58-93ed-57379ab04684",
 						99,
 						time.Time{},
 					),
@@ -42,6 +45,7 @@ func Test_findAllTransferPresenter_Output(t *testing.T) {
 					ID:                   "3c096a40-ccba-4b58-93ed-57379ab04680",
 					AccountOriginID:      "3c096a40-ccba-4b58-93ed-57379ab04681",
 					AccountDestinationID: "3c096a40-ccba-4b58-93ed-57379ab04682",
+					IdempotencyKey:       "3c096a40-ccba-4b58-93ed-57379ab04683",
 					Amount:               10,
 					CreatedAt:            "0001-01-01T00:00:00Z",
 				},
@@ -49,6 +53,7 @@ func Test_findAllTransferPresenter_Output(t *testing.T) {
 					ID:                   "3c096a40-ccba-4b58-93ed-57379ab04680",
 					AccountOriginID:      "3c096a40-ccba-4b58-93ed-57379ab04681",
 					AccountDestinationID: "3c096a40-ccba-4b58-93ed-57379ab04682",
+					IdempotencyKey:       "3c096a40-ccba-4b58-93ed-57379ab04684",
 					Amount:               0.99,
 					CreatedAt:            "0001-01-01T00:00:00Z",
 				},

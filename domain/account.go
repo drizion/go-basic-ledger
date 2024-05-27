@@ -34,17 +34,17 @@ type (
 	Account struct {
 		id        AccountID
 		name      string
-		cpf       string
+		document  string
 		balance   Money
 		createdAt time.Time
 	}
 )
 
-func NewAccount(ID AccountID, name, CPF string, balance Money, createdAt time.Time) Account {
+func NewAccount(ID AccountID, name, Document string, balance Money, createdAt time.Time) Account {
 	return Account{
 		id:        ID,
 		name:      name,
-		cpf:       CPF,
+		document:  Document,
 		balance:   balance,
 		createdAt: createdAt,
 	}
@@ -72,8 +72,8 @@ func (a Account) Name() string {
 	return a.name
 }
 
-func (a Account) CPF() string {
-	return a.cpf
+func (a Account) Document() string {
+	return a.document
 }
 
 func (a Account) Balance() Money {

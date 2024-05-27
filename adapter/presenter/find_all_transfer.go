@@ -21,6 +21,7 @@ func (a findAllTransferPresenter) Output(transfers []domain.Transfer) []usecase.
 			ID:                   transfer.ID().String(),
 			AccountOriginID:      transfer.AccountOriginID().String(),
 			AccountDestinationID: transfer.AccountDestinationID().String(),
+			IdempotencyKey:       transfer.IdempotencyKey().String(),
 			Amount:               transfer.Amount().Float64(),
 			CreatedAt:            transfer.CreatedAt().Format(time.RFC3339),
 		})

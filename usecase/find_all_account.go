@@ -22,7 +22,7 @@ type (
 	FindAllAccountOutput struct {
 		ID        string  `json:"id"`
 		Name      string  `json:"name"`
-		CPF       string  `json:"cpf"`
+		Document  string  `json:"document"`
 		Balance   float64 `json:"balance"`
 		CreatedAt string  `json:"created_at"`
 	}
